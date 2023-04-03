@@ -6,9 +6,9 @@ type Completion interface {
 	// The first return value is the chunk of the completion.
 	// The second return value is a flag that indicates whether the stream is ended.
 	// The third return value is potential error.
-	GetChunkedValue() ([]byte, bool, error)
+	GetChunkedValue(ctx *Context) ([]byte, bool, error)
 
 	// Terminate
 	// Stop the generation of completion if it is not desired.
-	Terminate() error
+	Terminate(ctx *Context) error
 }

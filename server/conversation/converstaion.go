@@ -5,6 +5,9 @@ type Conversation interface {
 	// Ask Send a prompt to ai and get the completion.
 	Ask(prompt Prompt) (Completion, error)
 
+	// GetContext get binded context of current Conversation.
+	GetContext() *Context
+
 	// GetLastIndex Get the last index of current conversation.
 	GetLastIndex() int
 
