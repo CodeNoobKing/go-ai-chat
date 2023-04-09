@@ -1,5 +1,7 @@
 package prompt
 
+import "github.com/CodeNoobKing/go-ai-chat/server/context"
+
 // EnhancementType the type of enhancement.
 type EnhancementType string
 
@@ -29,7 +31,7 @@ type EnhancerType string
 // Enhancer is the interface to enhance prompt.
 type Enhancer interface {
 	// Enhance the prompt content, and return the enhanced value.
-	Enhance(ctx *Content, prompt Prompt) error
+	Enhance(ctx *context.Context, prompt Prompt) error
 }
 
 // EnhancerRegistry the registry of enhancer.

@@ -32,5 +32,18 @@ type Completion interface {
 	GetType(ctx *context.Context) CompletionType
 
 	// OnReceive register a value reader to read the value of the completion.
-	OnReceive(reader ValueReader)
+	OnReceive() <-chan []byte
+
+	// Terminate terminates the completion.
+	Terminate(ctx *context.Context) error
+}
+
+// ReadAllValue reads all the value of the completion.
+func ReadAllValue(completion Completion) []byte {
+	var buf []byte
+
+	for chunk := range completion.OnReceive() {
+		buf = append(buf, chunk...)
+	}
+	return buf
 }
